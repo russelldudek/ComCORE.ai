@@ -15,7 +15,7 @@
 
     /* Hero */
     .hero{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;height:70vh;color:#fff;background:linear-gradient(135deg,rgba(191,30,46,.8),rgba(176,137,0,.8)),url('hero-bg.jpg') center/cover no-repeat}
-    .hero-content{z-index:1;max-width:800px}
+    .hero-content{z-index:1;max-width:800px;padding:0 1rem}
     .hero h1{font-size:4rem;font-weight:700}
     .hero .subtitle{font-size:1.5rem;margin:1rem 0 2rem;opacity:.9}
     .btn{display:inline-block;background:#b08900;color:#0d1117;padding:1rem 2.5rem;font-weight:700;border-radius:2rem;box-shadow:4px 4px 15px rgba(0,0,0,.7),-4px -4px 15px rgba(255,255,255,.05);transition:transform .2s,background .2s}
@@ -27,15 +27,15 @@
     .feature-box h3{color:#b08900}
 
     /* CORE Intro */
-    .core-intro{margin:3rem 0;text-align:center}
+    .core-intro{margin:3rem 0;text-align:center;padding:0 1rem}
 
     /* Demo */
     .demo{background:#161b22;border-radius:1rem;padding:2rem;box-shadow:4px 4px 20px rgba(0,0,0,.7),-4px -4px 20px rgba(255,255,255,.05);margin-bottom:3rem}
-    .scenarios{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2rem}
+    .scenarios{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2rem;padding:0 1rem}
     .scenarios button{background:#0d1117;color:#c9d1d9;border:none;padding:.8rem 1.5rem;font-size:.9rem;border-radius:2rem;box-shadow:4px 4px 10px rgba(0,0,0,.7),-4px -4px 10px rgba(255,255,255,.05);cursor:pointer;transition:transform .2s,background .2s}
     .scenarios button:hover{transform:translateY(-2px);background:#bf1e2e}
-    .group-title{display:none;font-size:1.25rem;font-weight:700;color:#b08900;margin:2rem 0 1rem}
-    .phones-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));justify-content:start}
+    .group-title{display:none;font-size:1.25rem;font-weight:700;color:#b08900;margin:2rem 0 1rem;padding:0 1rem}
+    .phones-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));justify-content:start;padding:0 1rem}
     .phone{display:none;flex-direction:column;background:#0d1117;border-radius:2rem;padding:1rem;box-shadow:4px 4px 20px rgba(0,0,0,.7),-4px -4px 20px rgba(255,255,255,.05);width:100%;max-width:230px;aspect-ratio:9/19}
     .phone.caller{border:3px solid #bf1e2e}
     .screen{background:#1f1f1f;border-radius:1rem;height:100%;display:flex;flex-direction:column;overflow:hidden}
@@ -52,6 +52,26 @@
     /* Footer */
     footer{background:#000;color:#888;text-align:center;padding:2rem .5rem;font-size:.85rem;margin-top:5rem}
     footer a{color:#b08900}
+
+    /* Responsive: Tablets */
+    @media(max-width:768px){
+      .hero{height:50vh}
+      .hero h1{font-size:3rem}
+      .hero .subtitle{font-size:1.25rem}
+      .features{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+      .phones-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+    }
+
+    /* Responsive: Mobile */
+    @media(max-width:480px){
+      .hero{height:40vh}
+      .hero h1{font-size:2.5rem}
+      .hero .subtitle{font-size:1rem}
+      .btn{padding:.8rem 1.5rem;font-size:.9rem}
+      .scenarios button{padding:.6rem 1rem;font-size:.8rem}
+      .phones-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+      .container{padding:1rem}
+    }
   </style>
 </head>
 <body>
@@ -222,48 +242,25 @@
       }
     };
 
-    /* Build phone elements with correct labels */
-    const phones={};
+    /* Build phone elements */
+    const phones={}    ;
     registry.forEach(({id,label,group})=>{
-      const phone=document.createElement('div');
-      phone.className='phone';
-      phone.dataset.id=id;
+      const phone=document.createElement('div');phone.className='phone';phone.dataset.id=id;
       phone.innerHTML=`<div class='screen'><div class='messages' data-id='${id}'></div></div><div class='phone-label'>${label}</div>`;
       document.getElementById(`${group}-grid`).appendChild(phone);
       phones[id]=phone;
     });
 
-    /* Demo logic with toggle capability */
+    /* Demo logic */
     let activeScenario=null;
-    function resetDemo(){
-      Object.values(phones).forEach(p=>{p.style.display='none';p.classList.remove('caller');p.querySelector('.messages').innerHTML='';});
-      document.querySelectorAll('.group-title').forEach(t=>t.style.display='none');
-    }
-    function addMsgs(id,msgs){
-      const container=document.querySelector(`.messages[data-id='${id}']`);
-      msgs.forEach(([cls,text])=>{const m=document.createElement('div');m.className='msg '+cls;m.innerText=text;container.appendChild(m);});
-    }
-    function runScenario(key){
-      if(activeScenario===key){resetDemo();activeScenario=null;return;}activeScenario=key;resetDemo();let caller=false;
-      const actors=scenarios[key]||{};
-      for(const [id,msgArr] of Object.entries(actors)){
-        const p=phones[id];p.style.display='flex';addMsgs(id,msgArr);
-        const grp=registry.find(r=>r.id===id).group;document.getElementById(`${grp}-title`).style.display='block';
-        if(!caller&&msgArr[0][0]==='user'){p.classList.add('caller');caller=true;}
-      }
-    }
+    function resetDemo(){Object.values(phones).forEach(p=>{p.style.display='none';p.classList.remove('caller');p.querySelector('.messages').innerHTML='';});document.querySelectorAll('.group-title').forEach(t=>t.style.display='none');}
+    function addMsgs(id,msgs){const box=document.querySelector(`.messages[data-id='${id}']`);msgs.forEach(([cls,text])=>{const m=document.createElement('div');m.className='msg '+cls;m.innerText=text;box.appendChild(m);});}
+    function runScenario(key){if(activeScenario===key){resetDemo();activeScenario=null;return;}activeScenario=key;resetDemo();let caller=false;const actors=scenarios[key]||{};for(const[id,msgArr]of Object.entries(actors)){const p=phones[id];p.style.display='flex';addMsgs(id,msgArr);const grp=registry.find(r=>r.id===id).group;document.getElementById(`${grp}-title`).style.display='block';if(!caller&&msgArr[0][0]==='user'){p.classList.add('caller');caller=true;}}}
     document.querySelectorAll('.scenarios button').forEach(btn=>btn.addEventListener('click',()=>runScenario(btn.dataset.scenario)));
 
-    // Signup form email handler replaced with sendEmail function
-    function sendEmail(e){
-      e.preventDefault();
-      const userEmail = document.getElementById('signup-form').email.value;
-      // Use mailto to send urgent signup
-      window.location.href = `mailto:duder@dudeworth.com?subject=URGENT:%20New%20Signup%20from%20ComCORE.ai&body=Urgent:%20New%20early%20access%20signup%20received%20from%20${encodeURIComponent(userEmail)}.%0A%0APlease%20add%20them%20to%20the%20founders%20list%20and%20reach%20out%20promptly.%0A%0A%E2%80%93%20ComCORE.ai%20Team`;
-    }
-
-    // Prevent default form submission
-    document.getElementById('signup-form').addEventListener('submit', sendEmail);
+    /* Signup handler */
+    function sendEmail(e){e.preventDefault();const userEmail=document.getElementById('signup-form').email.value;window.location.href=`mailto:duder@dudeworth.com?subject=URGENT:%20New%20Signup%20from%20ComCORE.ai&body=Urgent:%20New%20early%20access%20signup%20received%20from%20${encodeURIComponent(userEmail)}.%0A%0APlease%20add%20them%20to%20the%20founders%20list%20and%20reach%20out%20promptly.%0A%0A%E2%80%93%20ComCORE.ai%20Team`;}
+    document.getElementById('signup-form').addEventListener('submit',sendEmail);
   </script>
 </body>
 </html>
