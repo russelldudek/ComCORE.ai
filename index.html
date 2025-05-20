@@ -105,7 +105,7 @@
     <section id="signup" class="signup">
       <h2>Join & Support</h2>
       <p>Become a founding supporter—receive exclusive early access, priority updates, and help shape the future of campus safety.</p>
-      <form action="/signup" method="POST">
+      <form id="signup-form">
         <input type="email" name="email" placeholder="Your email address" required>
         <button type="submit" class="btn">Sign Up Now</button>
       </form>
@@ -240,19 +240,27 @@
       document.querySelectorAll('.group-title').forEach(t=>t.style.display='none');
     }
     function addMsgs(id,msgs){
-      const box=document.querySelector(`.messages[data-id='${id}']`);
-      msgs.forEach(([cls,text])=>{const m=document.createElement('div');m.className='msg '+cls;m.innerText=text;box.appendChild(m);});
+      const container=document.querySelector(`.messages[data-id='${id}']`);
+      msgs.forEach(([cls,text])=>{const m=document.createElement('div');m.className='msg '+cls;m.innerText=text;container.appendChild(m);});
     }
     function runScenario(key){
       if(activeScenario===key){resetDemo();activeScenario=null;return;}activeScenario=key;resetDemo();let caller=false;
       const actors=scenarios[key]||{};
-      for(const [id,msgs] of Object.entries(actors)){
-        const p=phones[id];p.style.display='flex';addMsgs(id,msgs);
+      for(const [id,msgArr] of Object.entries(actors)){
+        const p=phones[id];p.style.display='flex';addMsgs(id,msgArr);
         const grp=registry.find(r=>r.id===id).group;document.getElementById(`${grp}-title`).style.display='block';
-        if(!caller&&msgs[0][0]==='user'){p.classList.add('caller');caller=true;}
+        if(!caller&&msgArr[0][0]==='user'){p.classList.add('caller');caller=true;}
       }
     }
     document.querySelectorAll('.scenarios button').forEach(btn=>btn.addEventListener('click',()=>runScenario(btn.dataset.scenario)));
+
+    // Signup form email handler
+    document.getElementById('signup-form').addEventListener('submit',function(e){
+      e.preventDefault();
+      const userEmail=this.email.value;
+      // send urgent email via mailto with correct address
+      window.location.href = `mailto:duder@dudeworth.com?subject=URGENT:%20New%20Signup%20from%20ComCORE.ai&body=Urgent:%20New%20early%20access%20signup%20received%20from%20${encodeURIComponent(userEmail)}.%0A%0APlease%20add%20them%20to%20the%20founders%20list%20and%20reach%20out%20promptly.%0A%0A–%20ComCORE.ai%20Team`;
+    });
   </script>
 </body>
 </html>
