@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComCORE.ai | Command the Outcome</title>
+  <style>
+    /* Reset & Typography */
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:"Segoe UI",Roboto,Arial,sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6}
+    h1,h2,h3{margin-bottom:1rem}
+    p{margin-bottom:1rem}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:2rem}
+
+    /* Hero */
+    .hero{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;height:70vh;color:#fff;background:linear-gradient(135deg,rgba(191,30,46,.8),rgba(176,137,0,.8)),url('hero-bg.jpg') center/cover no-repeat}
+    .hero-content{z-index:1;max-width:800px}
+    .hero h1{font-size:4rem;font-weight:700}
+    .hero .subtitle{font-size:1.5rem;margin:1rem 0 2rem;opacity:.9}
+    .btn{display:inline-block;background:#b08900;color:#0d1117;padding:1rem 2.5rem;font-weight:700;border-radius:2rem;box-shadow:4px 4px 15px rgba(0,0,0,.7),-4px -4px 15px rgba(255,255,255,.05);transition:transform .2s,background .2s}
+    .btn:hover{transform:translateY(-2px);background:#bf1e2e;color:#fff}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin:3rem 0}
+    .feature-box{background:#161b22;border-radius:1rem;padding:1.5rem;box-shadow:4px 4px 20px rgba(0,0,0,.7),-4px -4px 20px rgba(255,255,255,.05)}
+    .feature-box h3{color:#b08900}
+
+    /* CORE Intro */
+    .core-intro{margin:3rem 0;text-align:center}
+
+    /* Demo */
+    .demo{background:#161b22;border-radius:1rem;padding:2rem;box-shadow:4px 4px 20px rgba(0,0,0,.7),-4px -4px 20px rgba(255,255,255,.05);margin-bottom:3rem}
+    .scenarios{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2rem}
+    .scenarios button{background:#0d1117;color:#c9d1d9;border:none;padding:.8rem 1.5rem;font-size:.9rem;border-radius:2rem;box-shadow:4px 4px 10px rgba(0,0,0,.7),-4px -4px 10px rgba(255,255,255,.05);cursor:pointer;transition:transform .2s,background .2s}
+    .scenarios button:hover{transform:translateY(-2px);background:#bf1e2e}
+    .group-title{display:none;font-size:1.25rem;font-weight:700;color:#b08900;margin:2rem 0 1rem}
+    .phones-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));justify-content:start}
+    .phone{display:none;flex-direction:column;background:#0d1117;border-radius:2rem;padding:1rem;box-shadow:4px 4px 20px rgba(0,0,0,.7),-4px -4px 20px rgba(255,255,255,.05);width:100%;max-width:230px;aspect-ratio:9/19}
+    .phone.caller{border:3px solid #bf1e2e}
+    .screen{background:#1f1f1f;border-radius:1rem;height:100%;display:flex;flex-direction:column;overflow:hidden}
+    .messages{flex:1;padding:.8rem;overflow-y:auto}
+    .msg{margin-bottom:.5rem;padding:.5rem 1rem;border-radius:1rem;font-size:.85rem;word-break:break-word}
+    .msg.user{background:#bf1e2e;color:#fff;margin-left:auto}
+    .msg.system{background:#333;color:#f2f2f2}
+    .phone-label{text-align:center;margin-top:.5rem;font-size:.75rem}
+
+    /* Signup */
+    .signup{text-align:center;padding:3rem 0}
+    .signup input[type=email]{padding:.8rem;border-radius:1rem;border:none;width:250px;margin-right:1rem}
+
+    /* Footer */
+    footer{background:#000;color:#888;text-align:center;padding:2rem .5rem;font-size:.85rem;margin-top:5rem}
+    footer a{color:#b08900}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>ComCORE.ai</h1>
+        <p class="subtitle">Control the moment, Command the Outcome</p>
+        <p>When every second matters, hesitation is fatal. <strong>ComCORE.ai</strong> fuses every voice on campus into one decisive heartbeat—seeing, deciding, and deploying the right response before chaos can take hold.</p>
+        <a href="#signup" class="btn">Sign Up Now</a>
+      </div>
+    </section>
+
+    <!-- CORE Intro -->
+    <section class="core-intro">
+      <h2>The C.O.R.E. — Centralized Omniscient Response Engine</h2>
+      <p><strong>C</strong>entralized hub for crisis intelligence, <strong>O</strong>mniscient situational insight, <strong>R</strong>esponse automation in seconds, and an <strong>E</strong>ngine that empowers every school leader.</p>
+      <p><em>Powered by cutting-edge AI to ensure the fastest, smartest decisions when they matter most.</em></p>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="feature-box"><h3>Situational Awareness</h3><p>Live incident tracking and automated updates ensure every stakeholder stays informed without delay.</p></div>
+      <div class="feature-box"><h3>Rapid Coordination</h3><p>Customizable alerts connect staff, first responders, and administrators instantly—minimizing response times.</p></div>
+      <div class="feature-box"><h3>Unified Command</h3><p>A centralized interface for clear decision-making under pressure.</p></div>
+    </section>
+
+    <!-- Demo -->
+    <section class="demo">
+      <h2>Interactive Demo</h2>
+      <div class="scenarios">
+        <button data-scenario="Fight in the west wing">Fight in West Wing</button>
+        <button data-scenario="Power outage at High School">Power Outage</button>
+        <button data-scenario="Gun shots in the gym">Gunshots in Gym</button>
+        <button data-scenario="Gas leak near cafeteria">Gas Leak</button>
+        <button data-scenario="Severe storm approaching">Severe Storm</button>
+        <button data-scenario="Bomb threat received">Bomb Threat</button>
+        <button data-scenario="Water main break in science wing">Water Main Break</button>
+        <button data-scenario="Cyber attack shutting down network">Cyber Attack</button>
+      </div>
+      <h3 id="care-title" class="group-title">Student Care & Well-Being</h3><div id="care-grid" class="phones-grid"></div>
+      <h3 id="admin-title" class="group-title">Administration & Leadership</h3><div id="admin-grid" class="phones-grid"></div>
+      <h3 id="ops-title" class="group-title">Operations & Logistics</h3><div id="ops-grid" class="phones-grid"></div>
+      <h3 id="security-title" class="group-title">Safety & Security</h3><div id="security-grid" class="phones-grid"></div>
+      <h3 id="comms-title" class="group-title">Communications & Media</h3><div id="comms-grid" class="phones-grid"></div>
+      <h3 id="external-title" class="group-title">External Support</h3><div id="external-grid" class="phones-grid"></div>
+    </section>
+
+    <!-- Signup -->
+    <section id="signup" class="signup">
+      <h2>Join & Support</h2>
+      <p>Become a founding supporter—receive exclusive early access, priority updates, and help shape the future of campus safety.</p>
+      <form action="/signup" method="POST">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <button type="submit" class="btn">Sign Up Now</button>
+      </form>
+    </section>
+
+    <footer>&copy; 2025 ComCORE.ai — Built in Pittsburgh, PA • <a href="#top">Back to top</a></footer>
+  </div>
+
+  <script>
+    /* Stakeholder registry (with proper labels) */
+    const registry=[
+      {id:'teacher',label:'Teacher',group:'care'},
+      {id:'student',label:'Student',group:'care'},
+      {id:'parent',label:'Parent/Guardian',group:'care'},
+      {id:'nurse',label:'Nurse',group:'care'},
+      {id:'counselor',label:'Counselor',group:'care'},
+      {id:'principal',label:'Principal',group:'admin'},
+      {id:'secretary',label:'Secretary',group:'admin'},
+      {id:'superintendent',label:'Superintendent',group:'admin'},
+      {id:'board',label:'Board Chair',group:'admin'},
+      {id:'hr',label:'HR',group:'admin'},
+      {id:'facilities',label:'Facilities',group:'ops'},
+      {id:'custodial',label:'Custodial',group:'ops'},
+      {id:'food',label:'Food Svc',group:'ops'},
+      {id:'transport',label:'Transport',group:'ops'},
+      {id:'athletics',label:'Athletics',group:'ops'},
+      {id:'it',label:'IT',group:'ops'},
+      {id:'allstaff',label:'All Staff',group:'ops'},
+      {id:'police',label:'School Police',group:'security'},
+      {id:'authorities',label:'Local PD',group:'security'},
+      {id:'pio',label:'PIO',group:'comms'},
+      {id:'countyem',label:'County EM',group:'external'},
+      {id:'legal',label:'Legal',group:'external'}
+    ];
+
+    /* Scenario definitions (unchanged) */
+    const scenarios = {
+      'Fight in the west wing': {
+        student: [['user','Fight in the west wing!'], ['system','🚨 Lockdown initiated. Follow teacher instructions and remain silent.']],
+        teacher: [['system','🚨 Security notified. Keep all students in locked classrooms.']],
+        parent: [['system','📢 Incident reported: fight in west wing. School in lockdown.']],
+        nurse: [['system','Nurse on standby for any injuries.']],
+        counselor: [['system','Counselors ready for support once safe.']],
+        principal: [['system','📣 West wing fight. Security and admin responding.']],
+        superintendent: [['system','District monitoring fight incident.']],
+        police: [['system','👮 Proceeding to west wing.']]
+      },
+      'Power outage at High School': {
+        secretary: [['user','Power outage reported on campus'], ['system','💡 Maintenance alerted. Continue lesson if safe.']],
+        teacher: [['system','Continue lesson by daylight until fixed.']],
+        parent: [['system','⚠️ Power outage. Students safe; classes continuing.']],
+        principal: [['system','⚠️ Campus-wide power loss. Generators engaging.']],
+        superintendent: [['system','District monitoring outage; utility notified.']],
+        facilities: [['system','🔧 Investigating main breaker.']],
+        it: [['system','IT switching to backup servers.']]
+      },
+      'Gun shots in the gym': {
+        teacher: [['user','Gunshots in the gym!'], ['system','🚨 LOCKDOWN initiated. Barricade doors.']],
+        student: [['system','Hide away from doors and stay quiet.']],
+        parent: [['system','🚨 Lockdown in progress. Do NOT come to campus.']],
+        nurse: [['system','Nurse setting up triage station near secure hallway.']],
+        counselor: [['system','Counselors set up reunification support post-lockdown.']],
+        principal: [['system','🚨 Active shooter gym. Police en route.']],
+        superintendent: [['system','District crisis team activated – shooter incident.']],
+        police: [['system','👮 Establish perimeter at gym.']],
+        authorities: [['system','SWAT activated; EMS staging nearby.']]
+      },
+      'Gas leak near cafeteria': {
+        teacher: [['user','Smell gas near cafeteria'], ['system','🔥 Evacuate cafeteria wing immediately.']],
+        student: [['system','Move outside via nearest exit.']],
+        parent: [['system','⚠️ Gas leak in cafeteria; partial evacuation.']],
+        nurse: [['system','Nurse assessing inhalation complaints.']],
+        principal: [['system','⚠️ Gas leak cafeteria. Evac underway.']],
+        superintendent: [['system','District coordinating with Fire Dept; monitoring air quality.']],
+        facilities: [['system','🔧 Shutting main gas valve; assessing leak.']]
+      },
+      'Severe storm approaching': {
+        secretary: [['user','Severe storm warning issued'], ['system','🌪️ Move students to interior safe zones.']],
+        teacher: [['system','Shelter in interior rooms away from windows.']],
+        student: [['system','Follow teacher to shelter.']],
+        parent: [['system','⛈️ Severe storm. Students sheltering; avoid travel.']],
+        counselor: [['system','Counselors prepared for post-event support.']],
+        principal: [['system','⚠️ Severe weather protocol activated.']],
+        superintendent: [['system','District ops center tracking storm cell.']],
+        countyem: [['system','County EM monitoring storm. Ready to assist.']]
+      },
+      'Bomb threat received': {
+        secretary: [['user','Bomb threat received at main office'], ['system','📞 Logged threat; notifying authorities.']],
+        parent: [['system','🚨 Bomb threat received. Students evacuating to stadium.']],
+        counselor: [['system','Counselors deployed to stadium for student support.']],
+        nurse: [['system','Nurse bringing emergency kit to stadium.']],
+        principal: [['system','🚨 Bomb threat. Initiate full evacuation and lockdown.']],
+        superintendent: [['system','District crisis team activated – bomb threat.']],
+        police: [['system','👮 PD with K9 units en route for sweep.']],
+        pio: [['system','Holding statement for media prepared.']],
+        legal: [['system','Preserve call recording for evidence.']]
+      },
+      'Water main break in science wing': {
+        teacher: [['user','Water flooding science hallway'], ['system','💧 Move students away from affected area.']],
+        principal: [['system','⚠️ Water main break – relocating classes.']],
+        superintendent: [['system','District maintenance reviewing water damage.']],
+        facilities: [['system','🔧 Shutting off water to science wing.']],
+        custodial: [['system','🧹 Deploying wet vac teams.']],
+        nurse: [['system','Nurse on alert for slip injuries.']],
+        parent: [['system','ℹ️ Water main break. Some rooms relocated; no safety issues.']]
+      },
+      'Cyber attack shutting down network': {
+        it: [['user','Ransomware suspected – systems offline'], ['system','🛡️ Isolating network segments.']],
+        principal: [['system','⚠️ Network down. Using radio for updates.']],
+        superintendent: [['system','District IT handling cyber incident.']],
+        parent: [['system','ℹ️ Technical outage; data secured.']],
+        legal: [['system','Reviewing breach notification obligations.']],
+        pio: [['system','Statement: technical outage under investigation.']]
+      }
+    };
+
+    /* Build phone elements with correct labels */
+    const phones={};
+    registry.forEach(({id,label,group})=>{
+      const phone=document.createElement('div');
+      phone.className='phone';
+      phone.dataset.id=id;
+      phone.innerHTML=`<div class='screen'><div class='messages' data-id='${id}'></div></div><div class='phone-label'>${label}</div>`;
+      document.getElementById(`${group}-grid`).appendChild(phone);
+      phones[id]=phone;
+    });
+
+    /* Demo logic with toggle capability */
+    let activeScenario=null;
+    function resetDemo(){
+      Object.values(phones).forEach(p=>{p.style.display='none';p.classList.remove('caller');p.querySelector('.messages').innerHTML='';});
+      document.querySelectorAll('.group-title').forEach(t=>t.style.display='none');
+    }
+    function addMsgs(id,msgs){
+      const box=document.querySelector(`.messages[data-id='${id}']`);
+      msgs.forEach(([cls,text])=>{const m=document.createElement('div');m.className='msg '+cls;m.innerText=text;box.appendChild(m);});
+    }
+    function runScenario(key){
+      if(activeScenario===key){resetDemo();activeScenario=null;return;}activeScenario=key;resetDemo();let caller=false;
+      const actors=scenarios[key]||{};
+      for(const [id,msgs] of Object.entries(actors)){
+        const p=phones[id];p.style.display='flex';addMsgs(id,msgs);
+        const grp=registry.find(r=>r.id===id).group;document.getElementById(`${grp}-title`).style.display='block';
+        if(!caller&&msgs[0][0]==='user'){p.classList.add('caller');caller=true;}
+      }
+    }
+    document.querySelectorAll('.scenarios button').forEach(btn=>btn.addEventListener('click',()=>runScenario(btn.dataset.scenario)));
+  </script>
+</body>
+</html>
