@@ -105,7 +105,7 @@
     <section id="signup" class="signup">
       <h2>Join & Support</h2>
       <p>Become a founding supporter—receive exclusive early access, priority updates, and help shape the future of campus safety.</p>
-      <form id="signup-form">
+      <form id="signup-form" action="#" method="POST" onsubmit="sendEmail(event)">
         <input type="email" name="email" placeholder="Your email address" required>
         <button type="submit" class="btn">Sign Up Now</button>
       </form>
@@ -254,13 +254,16 @@
     }
     document.querySelectorAll('.scenarios button').forEach(btn=>btn.addEventListener('click',()=>runScenario(btn.dataset.scenario)));
 
-    // Signup form email handler
-    document.getElementById('signup-form').addEventListener('submit',function(e){
+    // Signup form email handler replaced with sendEmail function
+    function sendEmail(e){
       e.preventDefault();
-      const userEmail=this.email.value;
-      // send urgent email via mailto with correct address
-      window.location.href = `mailto:duder@dudeworth.com?subject=URGENT:%20New%20Signup%20from%20ComCORE.ai&body=Urgent:%20New%20early%20access%20signup%20received%20from%20${encodeURIComponent(userEmail)}.%0A%0APlease%20add%20them%20to%20the%20founders%20list%20and%20reach%20out%20promptly.%0A%0A–%20ComCORE.ai%20Team`;
-    });
+      const userEmail = document.getElementById('signup-form').email.value;
+      // Use mailto to send urgent signup
+      window.location.href = `mailto:duder@dudeworth.com?subject=URGENT:%20New%20Signup%20from%20ComCORE.ai&body=Urgent:%20New%20early%20access%20signup%20received%20from%20${encodeURIComponent(userEmail)}.%0A%0APlease%20add%20them%20to%20the%20founders%20list%20and%20reach%20out%20promptly.%0A%0A%E2%80%93%20ComCORE.ai%20Team`;
+    }
+
+    // Prevent default form submission
+    document.getElementById('signup-form').addEventListener('submit', sendEmail);
   </script>
 </body>
 </html>
